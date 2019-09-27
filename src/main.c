@@ -11,11 +11,10 @@ int main(int argc, char** args) {
     for(int i = 0; i < 10; i++)
         dlib.appendList(test, (void *) i);
     
-    list_cell *cell = test->head->next;
-    while(cell != NULL) {
-        printf("List[%d] = %d\n", cell->index, (int) cell->value);
-        cell = cell->next;
+    for(int i = 0; i < test->length; i++) {
+        printf("List[%d] = %d\n", i, (int) dlib.accessList(test, i));
     }
+
     dlib.deleteList(test);
 
     return 0;

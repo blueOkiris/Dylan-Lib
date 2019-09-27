@@ -6,12 +6,28 @@
 #ifndef _DYLLIB_H_
 #define _DYLLIB_H_
 
-#include <list.h>
+// The individual nodes of our linked list.
+typedef struct LINKED_LIST_CELL {
+    void *value;
+
+    int index;
+
+    struct LINKED_LIST_CELL *previous;
+    struct LINKED_LIST_CELL *next;
+} list_cell;
+
+typedef struct LINKED_LIST {
+    list_cell *head;
+    list_cell *tail;
+
+    int length;
+} list;
 
 typedef struct DYLAN_LIB {
     list *(*newList) (void);
     void (*appendList) (list *, void *);
     void (*deleteList) (list *);
+    void *(*accessList) (list *, int);
 } dylanlib;
 
 extern dylanlib dlib; 

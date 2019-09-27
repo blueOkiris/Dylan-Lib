@@ -16,6 +16,7 @@ list *newList(void) {
     new_list->head->value = NULL;
 
     new_list->tail = NULL;
+    new_list->length = 0;
 
     return new_list;
 }
@@ -38,6 +39,8 @@ void appendList(list *_list, void *data) {
     new_cell->next = NULL;
 
     _list->tail = new_cell;
+    
+    _list->length++;
 }
 
 // Delete all mallocs created
@@ -53,4 +56,18 @@ void deleteList(list *_list) {
     }
 
     free(_list);
+}
+
+// Get an element at a specific location in list
+void *accessList(list *_list, int index) {
+    list_cell *current = _list->head;
+
+    while(current != NULL) {
+        if(current->index == index)
+            return current->value;
+
+        current = current->next;
+    }
+
+    return NULL;
 }
