@@ -13,11 +13,9 @@ INC= -Iheaders
 # gcc is the default compiler
 # -g is for debug
 # -Wall shows all warnings
-# -lm load math libraries
 CC= gcc
-CFLAGS= -g -Wall -lm
+CFLAGS= -g -Wall
 
 # Build everything
 test: $(SRC)
 	$(CC) $(INC) $(SRC) $(CFLAGS) -o $(OBJNAME)
-
