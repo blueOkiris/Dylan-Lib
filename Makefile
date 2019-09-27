@@ -1,21 +1,30 @@
 # Name of binary
 OBJNAME= dylibtest
 
-# Input files
-# Default is all c files in the src directory
-SRC= $(wildcard src/*.c)
+# Input files that aren't for library (i.e. tests)
+SRC=    src/main.c
+
+# Files specifically for building library
+LIB_SRC= src/dyllib.c src/list.c
+LIB_OBJ= $(subst src,bin,$(subst .c,.o,$(LIB_SRC)))
 
 # Library locations for headers
 # Default is headers folder
-INC= -Iheaders
+INC=     -Iheaders
 
 # Compile options
 # gcc is the default compiler
 # -g is for debug
 # -Wall shows all warnings
-CC= gcc
-CFLAGS= -g -Wall
+CC=      gcc
+CFLAGS=  -g -Wall
 
 # Build everything
-test: $(SRC)
-	$(CC) $(INC) $(SRC) $(CFLAGS) -o $(OBJNAME)
+test: $(SRC) lib
+	$(CC) $(INC) $(SRC) $(CFLAGS) -o $(OBJNAME) -L. -ldyllib
+
+$(LIB_OBJ): $(LIB_SRC)
+	$(CC) -c $(subst bin,src,$(subst .o,.c,$@)) $(INC) $(CFLAGS) -o $@
+
+lib: $(LIB_OBJ)
+	ar rcs libdyllib.a $(LIB_OBJ)
