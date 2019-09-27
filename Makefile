@@ -5,7 +5,7 @@ OBJNAME= dyllibtest
 SRC=    src/main.c
 
 # Files specifically for building library
-LIB_SRC= src/dyllib.c src/list.c
+LIB_SRC= src/dyllib.c src/list.c src/str.c
 LIB_OBJ= $(subst src,bin,$(subst .c,.o,$(LIB_SRC)))
 
 # Library locations for headers

@@ -25,7 +25,13 @@ typedef struct LINKED_LIST {
     int length;
 } list;
 
+typedef struct STRING {
+    int len;
+    char *val;
+} string;
+
 typedef struct DYLAN_LIB {
+    // Linked list functions
     list *(*newList) (void);
     void (*appendList) (list *, void *);
     void (*deleteList) (list *);
@@ -34,6 +40,10 @@ typedef struct DYLAN_LIB {
     void (*removeFromList) (list *, int);
     void *(*heapInt) (uint64_t);
     void (*debugPrintList) (list *);
+
+    // String functions
+    string *(*newString) (void);
+    void (*deleteString) (string *);
 } dylanlib;
 
 extern dylanlib dlib; 

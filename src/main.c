@@ -4,12 +4,20 @@
 #include <dyllib.h>
 
 void testLinkedList(void);
+void testString(void);
 
 int main(int argc, char** args) {
     //printf("Hello, world!");
-    testLinkedList();
+    //testLinkedList();
+    testString();
 
     return 0;
+}
+
+void testString(void) {
+    string *str = dlib.newString();
+
+    dlib.deleteString(str);
 }
 
 void testLinkedList(void) {
