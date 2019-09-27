@@ -1,5 +1,5 @@
 # Name of binary
-OBJNAME= dylibtest
+OBJNAME= dyllibtest
 
 # Input files that aren't for library (i.e. tests)
 SRC=    src/main.c
