@@ -39,7 +39,7 @@ void appendList(list *_list, void *data) {
     new_cell->next = NULL;
 
     _list->tail = new_cell;
-    
+
     _list->length++;
 }
 
@@ -52,6 +52,7 @@ void deleteList(list *_list) {
         cell_to_free = current;
         current = current->next;
 
+        free(cell_to_free->value);
         free(cell_to_free);
     }
 
@@ -69,5 +70,15 @@ void *accessList(list *_list, int index) {
         current = current->next;
     }
 
+    return NULL;
+}
+
+// Insert an element into a list at a specified index
+void insertInList(list *_list, int index, void *data) {
+    
+}
+
+// Remove an element at given index and return its data
+void *removeFromList(list *_list, int index) {
     return NULL;
 }

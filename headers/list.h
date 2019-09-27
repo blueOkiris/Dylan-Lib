@@ -12,5 +12,7 @@ list *newList(void);
 void appendList(list *, void *);
 void deleteList(list *);
 void *accessList(list *, int);
+void insertInList(list *, int, void *);
+void *removeFromList(list *, int);
 
 #endif
