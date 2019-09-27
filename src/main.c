@@ -46,9 +46,22 @@ void testString(void) {
     printf("%s\n", str->val);
     string *str2 = dlib.substring(str, 1, 4);
     printf("%s\n", str2->val);
+    printf("%d\n", str2->len);
     printf("Freeing strings\n");
     dlib.deleteString(str);
     dlib.deleteString(str2);
+
+    printf("Testing removal:\n");
+    str = dlib.newString();
+    dlib.appendString(str, "HELLO WORLD!");
+    printf("%s\n", str->val);
+    dlib.removeString(str, 0, 5);
+    printf("%s\n", str->val);
+    dlib.insertString(str, 0, "THE");
+    printf("%s\n", str->val);
+    printf("%d\n", str->len);
+    printf("Freeing string\n");
+    dlib.deleteString(str);
 }
 
 void testLinkedList(void) {

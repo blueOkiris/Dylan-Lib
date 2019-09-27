@@ -54,7 +54,10 @@ void insertString(string *str, int index, char *value) {
 }
 
 void removeString(string *str, int start, int len) {
-
+    memcpy(str->val + start, str->val + start + len, str->len - len);
+    str->val = (char *) realloc(str->val, sizeof(char) * (str->len - len + 1));
+    str->len -= len;
+    str->val[str->len] = '\0';
 }
 
 string *substring(string *str, int start, int len) {
