@@ -73,10 +73,36 @@ list *fscanlines(char *filename) {
     return line_arr;
 }
 
+void fprinttext(char *filename, string *text) {
+    FILE *file = fopen(filename, "w");
+    fprintf(file, "%s", text->val);
+    fclose(file);
+}
+
+void fappendtext(char *filename, string *text) {
+    FILE *file = fopen(filename, "a");
+    fprintf(file, "%s", text->val);
+    fclose(file);
+}
+
+void fprintlines(char *filename, list *lines) {
+    FILE *file = fopen(filename, "w");
+    for(int i = 0; i < lines->length; i++)
+        fprintf(file, "%s\n", (char *) accessList(lines, i));
+    fclose(file);
+}
+
+void fappendlines(char *filename, list *lines) {
+    FILE *file = fopen(filename, "a");
+    for(int i = 0; i < lines->length; i++)
+        fprintf(file, "%s\n", (char *) accessList(lines, i));
+    fclose(file);
+}
+
 dylanlib dlib = { 
     &heapInt, &heapCharArr,
     &newList, &appendList, &deleteList, &accessList, &insertInList, &removeFromList, &debugPrintList, &changeList,
     &newString, &deleteString, &appendString, &insertString, &removeString, &substring,
     &newDict, &addToDict, &getFromDict, &deleteDict, &removeFromDict, &setDict,
-    &fsize, &fscantext, &fscanlines
+    &fsize, &fscantext, &fscanlines, &fprinttext, &fprintlines, &fappendtext, &fappendlines
 };

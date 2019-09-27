@@ -31,3 +31,11 @@ bin:
 
 lib: $(LIB_OBJ)
 	ar rcs libdyllib.a $(LIB_OBJ)
+
+.PHONY: clean
+clean:
+	rm -rf bin/
+	rm $(OBJNAME)
+	rm libdyllib.a
+	rm *.o
+	rm vgcore*

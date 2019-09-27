@@ -72,6 +72,10 @@ typedef struct DYLAN_LIB {
     int (*fsize) (char *filename);
     string *(*fscantext) (char *filename);
     list *(*fscanlines) (char *filename);
+    void (*fprinttext) (char *filename, string *text);
+    void (*fprintlines) (char *filename, list *lines);
+    void (*fappendtext) (char *filename, string *text);
+    void (*fappendlines) (char *filename, list *lines);
 } dylanlib;
 
 extern dylanlib dlib; 

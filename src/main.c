@@ -19,13 +19,16 @@ int main(int argc, char** args) {
 }
 
 void testMiscellaneous(void) {
-    string *main_c_src = dlib.fscantext("src/main.c");
+    // File IO
+    string *main_c_src = dlib.fscantext("src/main.c");                  // This works
     //printf("\n%s\n", main_c_src->val);
+    dlib.fprinttext("test1.o", main_c_src);
     dlib.deleteString(main_c_src);
 
     list *main_c_src_lines = dlib.fscanlines("src/main.c");
-    for(int i = 0; i < main_c_src_lines->length; i++)
-        printf("%s\n", (char *) dlib.accessList(main_c_src_lines, i));
+    //for(int i = 0; i < main_c_src_lines->length; i++)
+    //    printf("%s\n", (char *) dlib.accessList(main_c_src_lines, i));
+    dlib.fprintlines("test2.o", main_c_src_lines);
     dlib.deleteList(main_c_src_lines);
 }
 
