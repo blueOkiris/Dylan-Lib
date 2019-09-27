@@ -24,6 +24,18 @@ void testString(void) {
     printf("%s\n", str->val);
     dlib.appendString(str, "DEATH");
     printf("%s\n", str->val);
+    dlib.deleteString(str);
+
+    printf("Testing insertion:\n");
+    str = dlib.newString();
+    dlib.appendString(str, "NEWSTRING");
+    printf("%s\n", str->val);
+    dlib.insertString(str, 0, "BLAH");
+    printf("%s\n", str->val);
+    dlib.insertString(str, 5, "BLAH");
+    printf("%s\n", str->val);
+    dlib.insertString(str, str->len - 1, "BLAH");
+    printf("%s\n", str->val);
 
     printf("Freeing string\n");
     dlib.deleteString(str);

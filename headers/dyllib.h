@@ -44,7 +44,8 @@ typedef struct DYLAN_LIB {
     // String functions
     string *(*newString) (void);
     void (*deleteString) (string *);
-    void (*appendString) (string *, char *value);
+    void (*appendString) (string *, char *);
+    void (*insertString) (string *, int, char *);
 } dylanlib;
 
 extern dylanlib dlib; 

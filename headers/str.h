@@ -10,5 +10,6 @@
 string *newString(void);
 void deleteString(string *);
 void appendString(string *, char *);
+void insertString(string *, int index, char *);
 
 #endif
