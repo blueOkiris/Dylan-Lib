@@ -10,9 +10,9 @@ void testMiscellaneous(void);
 
 int main(int argc, char** args) {
     //printf("Hello, world!\n");
-    testLinkedList();
-    testString();
-    testDictionary();
+    //testLinkedList();
+    //testString();
+    //testDictionary();
     testMiscellaneous();
 
     return 0;
@@ -20,8 +20,13 @@ int main(int argc, char** args) {
 
 void testMiscellaneous(void) {
     string *main_c_src = dlib.fscantext("src/main.c");
-    printf("\n%s\n", main_c_src->val);
+    //printf("\n%s\n", main_c_src->val);
     dlib.deleteString(main_c_src);
+
+    list *main_c_src_lines = dlib.fscanlines("src/main.c");
+    for(int i = 0; i < main_c_src_lines->length; i++)
+        printf("%s\n", (char *) dlib.accessList(main_c_src_lines, i));
+    dlib.deleteList(main_c_src_lines);
 }
 
 void testDictionary(void) {

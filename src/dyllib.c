@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 #include <dict.h>
 #include <list.h>
@@ -14,6 +15,16 @@ void *heapInt(uint64_t data) {
     *newInt = data;
 
     return newInt;
+}
+
+// Puts a copy of a char * onto the heap
+void *heapCharArr(char *data) {
+    int len = strlen(data);
+    char *copy = (char *) malloc(sizeof(char) * (len + 1));
+    memcpy(copy, data, len);
+    copy[len] = '\0';
+
+    return copy;
 }
 
 int fsize(char *filename) {
@@ -41,10 +52,31 @@ string *fscantext(char *filename) {
     return file_text;
 }
 
+list *fscanlines(char *filename) {
+    list *line_arr = newList();
+    string *full_text = fscantext(filename);
+
+    string *current_sub;
+    int start_sub = 0;
+    for(int i = 0; i < full_text->len; i++) {
+        if(full_text->val[i] == '\n') {
+            current_sub = substring(full_text, start_sub, i - start_sub);
+            appendList(line_arr, heapCharArr(current_sub->val));
+
+            start_sub = i + 1;
+        }
+    }
+
+    current_sub = substring(full_text, start_sub, full_text->len - start_sub);
+    appendList(line_arr, heapCharArr(current_sub->val));
+
+    return line_arr;
+}
+
 dylanlib dlib = { 
-    &heapInt,
+    &heapInt, &heapCharArr,
     &newList, &appendList, &deleteList, &accessList, &insertInList, &removeFromList, &debugPrintList, &changeList,
     &newString, &deleteString, &appendString, &insertString, &removeString, &substring,
     &newDict, &addToDict, &getFromDict, &deleteDict, &removeFromDict, &setDict,
-    &fsize, &fscantext
+    &fsize, &fscantext, &fscanlines
 };

@@ -40,6 +40,7 @@ typedef struct DICTIONARY {
 typedef struct DYLAN_LIB {
     // Move regular data types to heap
     void *(*heapInt) (uint64_t data);
+    void *(*heapCharArr) (char *data);
 
     // Linked list functions
     list *(*newList) (void);
@@ -70,6 +71,7 @@ typedef struct DYLAN_LIB {
     // Miscellaneous functions
     int (*fsize) (char *filename);
     string *(*fscantext) (char *filename);
+    list *(*fscanlines) (char *filename);
 } dylanlib;
 
 extern dylanlib dlib; 
