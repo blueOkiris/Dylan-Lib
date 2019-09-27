@@ -6,7 +6,5 @@ A collection of C software functions that I reuse throughout time. Thought other
  - Dynamic strings
  - Dynamic string to generic dictionary (or "map")
  - Extend file IO
-
-       * Read/Write/Append all text from file
-       
-       * Read/Write/Append list of lines from file
+       - Read/Write/Append all text from file
+       - Read/Write/Append list of lines from file
