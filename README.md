@@ -8,4 +8,3 @@ A collection of C software functions that I reuse throughout time. Thought other
  - Extend file IO
        * Read/Write/Append all text from file
        * Read/Write/Append list of lines from file
-       
