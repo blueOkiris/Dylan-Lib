@@ -2,6 +2,7 @@
  * Functions for setup and manipulation of the linked list
  */
 #include <stdlib.h>
+#include <stdio.h>
 
 #include <list.h>
 
@@ -75,10 +76,52 @@ void *accessList(list *_list, int index) {
 
 // Insert an element into a list at a specified index
 void insertInList(list *_list, int index, void *data) {
-    
+    list_cell *current = _list->head;
+
+    // Special case where there's no items
+    if(index >= _list->length)      // Add to end if expecting past tail
+        appendList(_list, data);
+    else {
+        while(current != NULL) {
+            if(current->index == index) {
+                // Swap a new cell in for the old cell
+                list_cell *new_cell = (list_cell *) malloc(sizeof(list_cell));
+                new_cell->value = data;
+                new_cell->previous = current->previous;
+                new_cell->next = current;
+                new_cell->index = index;
+                current->previous->next = new_cell;
+                current->previous = new_cell;
+
+                current = new_cell;
+                _list->length++;
+
+                list_cell *index_cell = current->next;
+                while(index_cell != NULL) {
+                    index_cell->index++;
+                    index_cell = index_cell->next;
+                }
+
+                break;
+            }
+
+            current = current->next;
+        }
+    }
 }
 
 // Remove an element at given index and return its data
 void *removeFromList(list *_list, int index) {
     return NULL;
+}
+
+// Print the list to stdout
+void debugPrintList(list *_list) {
+    list_cell *current = _list->head->next;
+
+    while(current != NULL) {
+        int value = *((int*) current->value);
+        printf("list[%d] = %d\n", current->index, value);
+        current = current->next;
+    }
 }

@@ -14,5 +14,6 @@ void deleteList(list *);
 void *accessList(list *, int);
 void insertInList(list *, int, void *);
 void *removeFromList(list *, int);
+void debugPrintList(list *);
 
 #endif

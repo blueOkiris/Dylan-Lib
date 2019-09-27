@@ -33,6 +33,7 @@ typedef struct DYLAN_LIB {
     void (*insertInList) (list *, int, void *);
     void *(*removeFromList) (list *, int);
     void *(*heapInt) (uint64_t);
+    void (*debugPrintList) (list *);
 } dylanlib;
 
 extern dylanlib dlib; 
