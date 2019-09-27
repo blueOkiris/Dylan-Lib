@@ -66,6 +66,10 @@ typedef struct DYLAN_LIB {
     void (*deleteDict) (dict *dct);
     dict *(*removeFromDict) (dict *dct, const char *key);
     dict *(*setDict) (dict *dct, const char *key, void *new_data);
+
+    // Miscellaneous functions
+    int (*fsize) (char *filename);
+    string *(*fscantext) (char *filename);
 } dylanlib;
 
 extern dylanlib dlib; 

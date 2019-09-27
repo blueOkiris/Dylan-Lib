@@ -6,14 +6,22 @@
 void testLinkedList(void);
 void testString(void);
 void testDictionary(void);
+void testMiscellaneous(void);
 
 int main(int argc, char** args) {
     //printf("Hello, world!\n");
     testLinkedList();
     testString();
     testDictionary();
+    testMiscellaneous();
 
     return 0;
+}
+
+void testMiscellaneous(void) {
+    string *main_c_src = dlib.fscantext("src/main.c");
+    printf("\n%s\n", main_c_src->val);
+    dlib.deleteString(main_c_src);
 }
 
 void testDictionary(void) {
