@@ -9,5 +9,6 @@
 
 string *newString(void);
 void deleteString(string *);
+void appendString(string *, char *);
 
 #endif

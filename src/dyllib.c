@@ -16,5 +16,5 @@ void *heapInt(uint64_t data) {
 
 dylanlib dlib = { 
     &newList, &appendList, &deleteList, &accessList, &insertInList, &removeFromList, &heapInt, &debugPrintList,
-    &newString, &deleteString
+    &newString, &deleteString, &appendString
 };

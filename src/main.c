@@ -8,7 +8,7 @@ void testString(void);
 
 int main(int argc, char** args) {
     //printf("Hello, world!");
-    //testLinkedList();
+    testLinkedList();
     testString();
 
     return 0;
@@ -17,6 +17,15 @@ int main(int argc, char** args) {
 void testString(void) {
     string *str = dlib.newString();
 
+    printf("Testing append string:\n");
+    dlib.appendString(str, "Hello, world!");
+    printf("%s\n", str->val);
+    dlib.appendString(str, str->val);
+    printf("%s\n", str->val);
+    dlib.appendString(str, "DEATH");
+    printf("%s\n", str->val);
+
+    printf("Freeing string\n");
     dlib.deleteString(str);
 }
 
