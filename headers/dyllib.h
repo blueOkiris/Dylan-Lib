@@ -49,6 +49,7 @@ typedef struct DYLAN_LIB {
     list *(*insertInList) (list *lst, int index, void *data);
     list *(*removeFromList) (list *lst, int index);
     void (*debugPrintList) (list *lst);
+    list *(*changeList) (list *lst, int index, void *new_data);
 
     // String functions
     string *(*newString) (void);
@@ -64,6 +65,7 @@ typedef struct DYLAN_LIB {
     void *(*getFromDict) (dict *dct, const char *key);
     void (*deleteDict) (dict *dct);
     dict *(*removeFromDict) (dict *dct, const char *key);
+    dict *(*setDict) (dict *dct, const char *key, void *new_data);
 } dylanlib;
 
 extern dylanlib dlib; 

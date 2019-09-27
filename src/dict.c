@@ -58,3 +58,15 @@ dict *removeFromDict(dict *_dict, const char *key) {
 
     return _dict;
 }
+
+dict *setDict(dict *_dict, const char *key, void *new_value) {
+    for(int i = 0; i < _dict->length; i++) {
+        if(!strcmp((char *) dlib.accessList(_dict->keys, i), key)) {
+            dlib.changeList(_dict->values, i, new_value);
+
+            return _dict;
+        }
+    }
+
+    return _dict;
+}

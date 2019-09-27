@@ -11,5 +11,6 @@ dict *addToDict(dict *, const char *, void *);
 void *getFromDict(dict *, const char *);
 void deleteDict(dict *);
 dict *removeFromDict(dict *, const char *);
+dict *setDict(dict *, const char *, void *);
 
 #endif

@@ -15,5 +15,6 @@ void *accessList(list *, int);
 list *insertInList(list *, int, void *);
 list *removeFromList(list *, int);
 void debugPrintList(list *);
+list *changeList(list *, int, void *);
 
 #endif

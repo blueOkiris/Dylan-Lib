@@ -153,3 +153,20 @@ void debugPrintList(list *_list) {
         current = current->next;
     }
 }
+
+list *changeList(list *_list, int index, void *new_data) {
+    list_cell *current = _list->head->next;
+
+    while(current != NULL) {
+        if(current->index == index) {
+            free(current->value);
+            current->value = new_data;
+
+            return _list;
+        }
+
+        current = current->next;
+    }
+
+    return _list;
+}
