@@ -8,6 +8,7 @@
 
 dict *newDict(void);
 dict *addToDict(dict *, const char *, void *);
+void *getFromDict(dict *, const char *);
 void deleteDict(dict *);
 
 #endif

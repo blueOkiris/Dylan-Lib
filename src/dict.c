@@ -30,6 +30,15 @@ dict *addToDict(dict *_dict, const char *key, void *value) {
     return _dict;
 }
 
+void *getFromDict(dict *_dict, const char *key) {
+    for(int i = 0; i < _dict->length; i++) {
+        if(!strcmp((char *) dlib.accessList(_dict->keys, i), key))
+            return dlib.accessList(_dict->values, i);
+    }
+
+    return NULL;
+}
+
 void deleteDict(dict *_dict) {
     dlib.deleteList(_dict->keys);
     dlib.deleteList(_dict->values);

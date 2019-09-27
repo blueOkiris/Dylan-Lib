@@ -19,5 +19,5 @@ dylanlib dlib = {
     &heapInt,
     &newList, &appendList, &deleteList, &accessList, &insertInList, &removeFromList, &debugPrintList,
     &newString, &deleteString, &appendString, &insertString, &removeString, &substring,
-    &newDict, &addToDict, &deleteDict
+    &newDict, &addToDict, &getFromDict, &deleteDict
 };

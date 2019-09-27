@@ -24,6 +24,10 @@ void testDictionary(void) {
     dlib.addToDict(test, "burrito", dlib.heapInt(2));
     dlib.addToDict(test, "pasta", dlib.heapInt(3));
 
+    printf("dict[\"taco\"] = %d\n", *(int *)dlib.getFromDict(test, "taco"));
+    printf("dict[\"burrito\"] = %d\n", *(int *)dlib.getFromDict(test, "burrito"));
+    printf("dict[\"pasta\"] = %d\n", *(int *)dlib.getFromDict(test, "pasta"));
+
     printf("Freeing dict\n");
     dlib.deleteDict(test);
 }
