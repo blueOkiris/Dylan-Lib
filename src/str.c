@@ -17,7 +17,7 @@ string *newString(void) {
     return new_str;
 }
 
-void appendString(string *str, char *value) {
+string *appendString(string *str, char *value) {
     int len = strlen(value);                                // Accessing passed in values into realloc creates mem leak. Store parameter as temp
     char *temp = (char *) malloc(sizeof(char) * (len + 1));
     strcpy(temp, value);
@@ -29,11 +29,13 @@ void appendString(string *str, char *value) {
     (str->val)[str->len] = '\0';
 
     free(temp);
+
+    return str;
 }
 
-void insertString(string *str, int index, char *value) {
+string *insertString(string *str, int index, char *value) {
     if(index >= str->len)
-        return;
+        return str;
 
     int len = strlen(value);
     char *temp = (char *) malloc(sizeof(char) * (len + 1));
@@ -51,13 +53,16 @@ void insertString(string *str, int index, char *value) {
 
     free(end_of_str);
     free(temp);
+
+    return str;
 }
 
-void removeString(string *str, int start, int len) {
+string *removeString(string *str, int start, int len) {
     memcpy(str->val + start, str->val + start + len, str->len - len);
     str->val = (char *) realloc(str->val, sizeof(char) * (str->len - len + 1));
     str->len -= len;
     str->val[str->len] = '\0';
+    return str;
 }
 
 string *substring(string *str, int start, int len) {

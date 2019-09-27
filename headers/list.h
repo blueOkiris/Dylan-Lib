@@ -9,11 +9,11 @@
 #include <dyllib.h>
 
 list *newList(void);
-void appendList(list *, void *);
+list *appendList(list *, void *);
 void deleteList(list *);
 void *accessList(list *, int);
-void insertInList(list *, int, void *);
-void removeFromList(list *, int);
+list *insertInList(list *, int, void *);
+list *removeFromList(list *, int);
 void debugPrintList(list *);
 
 #endif

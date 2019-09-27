@@ -9,9 +9,9 @@
 
 string *newString(void);
 void deleteString(string *);
-void appendString(string *, char *);
-void insertString(string *, int index, char *);
-void removeString(string *, int, int);
+string *appendString(string *, char *);
+string *insertString(string *, int index, char *);
+string *removeString(string *, int, int);
 string *substring(string *, int, int);
 
 #endif

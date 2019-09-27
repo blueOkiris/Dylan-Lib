@@ -7,7 +7,7 @@ void testLinkedList(void);
 void testString(void);
 
 int main(int argc, char** args) {
-    //printf("Hello, world!");
+    //printf("Hello, world!\n");
     testLinkedList();
     testString();
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include <dict.h>
 #include <list.h>
 #include <str.h>
 #include <dyllib.h>
@@ -15,6 +16,8 @@ void *heapInt(uint64_t data) {
 }
 
 dylanlib dlib = { 
-    &newList, &appendList, &deleteList, &accessList, &insertInList, &removeFromList, &heapInt, &debugPrintList,
-    &newString, &deleteString, &appendString, &insertString, &removeString, &substring
+    &heapInt,
+    &newList, &appendList, &deleteList, &accessList, &insertInList, &removeFromList, &debugPrintList,
+    &newString, &deleteString, &appendString, &insertString, &removeString, &substring,
+    &newDict, &addToDict
 };

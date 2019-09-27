@@ -30,24 +30,37 @@ typedef struct STRING {
     char *val;
 } string;
 
+typedef struct DICTIONARY {
+    list *keys;
+    list *values;
+
+    int length;
+} dict;
+
 typedef struct DYLAN_LIB {
+    // Move regular data types to heap
+    void *(*heapInt) (uint64_t data);
+
     // Linked list functions
     list *(*newList) (void);
-    void (*appendList) (list *lst, void *data);
+    list *(*appendList) (list *lst, void *data);
     void (*deleteList) (list *lst);
     void *(*accessList) (list *lst, int index);
-    void (*insertInList) (list *lst, int index, void *data);
-    void (*removeFromList) (list *lst, int index);
-    void *(*heapInt) (uint64_t data);
+    list *(*insertInList) (list *lst, int index, void *data);
+    list *(*removeFromList) (list *lst, int index);
     void (*debugPrintList) (list *lst);
 
     // String functions
     string *(*newString) (void);
     void (*deleteString) (string *str);
-    void (*appendString) (string *str, char *value);
-    void (*insertString) (string *str, int, char *value);
-    void (*removeString) (string *str, int start, int len);
+    string *(*appendString) (string *str, char *value);
+    string *(*insertString) (string *str, int, char *value);
+    string *(*removeString) (string *str, int start, int len);
     string *(*substring) (string *str, int start, int len);
+
+    // Dictionary functions
+    dict *(*newDict) (void);
+    dict *(*addToDict) (dict *dct, string *key, void *value);
 } dylanlib;
 
 extern dylanlib dlib; 

@@ -23,7 +23,7 @@ list *newList(void) {
 }
 
 // Add data to a list
-void appendList(list *_list, void *data) {
+list *appendList(list *_list, void *data) {
     list_cell *new_cell = (list_cell *) malloc(sizeof(list_cell));
 
     new_cell->value = data;
@@ -42,6 +42,8 @@ void appendList(list *_list, void *data) {
     _list->tail = new_cell;
 
     _list->length++;
+
+    return _list;
 }
 
 // Delete all mallocs created
@@ -75,7 +77,7 @@ void *accessList(list *_list, int index) {
 }
 
 // Insert an element into a list at a specified index
-void insertInList(list *_list, int index, void *data) {
+list *insertInList(list *_list, int index, void *data) {
     list_cell *current = _list->head;
 
     // Special case where there's no items
@@ -108,10 +110,12 @@ void insertInList(list *_list, int index, void *data) {
             current = current->next;
         }
     }
+
+    return _list;
 }
 
 // Remove an element at given index and return its data
-void removeFromList(list *_list, int index) {
+list *removeFromList(list *_list, int index) {
     if(index < _list->length) {
         list_cell *current = _list->head;
 
@@ -135,6 +139,8 @@ void removeFromList(list *_list, int index) {
             current = current->next;
         }
     }
+
+    return _list;
 }
 
 // Print the list to stdout
