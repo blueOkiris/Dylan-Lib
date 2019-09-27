@@ -24,6 +24,7 @@ void testString(void) {
     printf("%s\n", str->val);
     dlib.appendString(str, "DEATH");
     printf("%s\n", str->val);
+    printf("Freeing string\n");
     dlib.deleteString(str);
 
     printf("Testing insertion:\n");
@@ -36,9 +37,18 @@ void testString(void) {
     printf("%s\n", str->val);
     dlib.insertString(str, str->len - 1, "BLAH");
     printf("%s\n", str->val);
-
     printf("Freeing string\n");
     dlib.deleteString(str);
+
+    printf("Testing substring:\n");
+    str = dlib.newString();
+    dlib.appendString(str, "Hello, world!");
+    printf("%s\n", str->val);
+    string *str2 = dlib.substring(str, 1, 4);
+    printf("%s\n", str2->val);
+    printf("Freeing strings\n");
+    dlib.deleteString(str);
+    dlib.deleteString(str2);
 }
 
 void testLinkedList(void) {

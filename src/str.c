@@ -53,6 +53,21 @@ void insertString(string *str, int index, char *value) {
     free(temp);
 }
 
+void removeString(string *str, int start, int len) {
+
+}
+
+string *substring(string *str, int start, int len) {
+    string *sub_str = newString();
+    sub_str->val = (char *) realloc(sub_str->val, sizeof(char) * (len + 1));
+
+    memcpy(sub_str->val, str->val + start, len);
+    sub_str->len = len;
+    sub_str->val[sub_str->len] = '\0';
+
+    return sub_str;
+}
+
 void deleteString(string *str) {
     free(str->val);
     free(str);
