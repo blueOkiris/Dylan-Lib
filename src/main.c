@@ -29,6 +29,12 @@ void testLinkedList(void) {
 
     dlib.debugPrintList(test);
 
+    printf("Testing Removal:\n");
+    for(int i = 0; i < 3; i++)
+        dlib.removeFromList(test, 2);
+
+    dlib.debugPrintList(test);
+
     printf("Freeing list\n");
     dlib.deleteList(test);
 }

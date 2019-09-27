@@ -111,8 +111,30 @@ void insertInList(list *_list, int index, void *data) {
 }
 
 // Remove an element at given index and return its data
-void *removeFromList(list *_list, int index) {
-    return NULL;
+void removeFromList(list *_list, int index) {
+    if(index < _list->length) {
+        list_cell *current = _list->head;
+
+        while(current != NULL) {
+            if(current->index == index) {
+                current->previous->next = current->next;
+                current->next->previous = current->previous;
+
+                list_cell *index_cell = current->next;
+                while(index_cell != NULL) {
+                    index_cell->index--;
+                    index_cell = index_cell->next;
+                }
+
+                free(current->value);
+                free(current);
+
+                break;
+            }
+
+            current = current->next;
+        }
+    }
 }
 
 // Print the list to stdout
