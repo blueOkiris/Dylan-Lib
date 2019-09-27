@@ -2,4 +2,4 @@
 #include <list.h>
 #include <dyllib.h>
 
-dylanlib dlib = { &newList };
+dylanlib dlib = { &newList, &appendList, &deleteList };

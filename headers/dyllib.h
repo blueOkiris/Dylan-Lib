@@ -9,7 +9,9 @@
 #include <list.h>
 
 typedef struct DYLAN_LIB {
-    list (*newList)(void);
+    list *(*newList) (void);
+    void (*appendList) (list *, void *);
+    void (*deleteList) (list *);
 } dylanlib;
 
 extern dylanlib dlib; 
