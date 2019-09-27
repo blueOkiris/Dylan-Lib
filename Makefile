@@ -23,8 +23,11 @@ CFLAGS=  -g -Wall
 test: $(SRC) lib
 	$(CC) $(INC) $(SRC) $(CFLAGS) -o $(OBJNAME) -L. -ldyllib
 
-$(LIB_OBJ): $(LIB_SRC)
+$(LIB_OBJ): $(LIB_SRC) bin
 	$(CC) -c $(subst bin,src,$(subst .o,.c,$@)) $(INC) $(CFLAGS) -o $@
+
+bin:
+	mkdir bin
 
 lib: $(LIB_OBJ)
 	ar rcs libdyllib.a $(LIB_OBJ)
