@@ -9,8 +9,8 @@ void testDictionary(void);
 
 int main(int argc, char** args) {
     //printf("Hello, world!\n");
-    testLinkedList();
-    testString();
+    //testLinkedList();
+    //testString();
     testDictionary();
 
     return 0;
@@ -27,6 +27,15 @@ void testDictionary(void) {
     printf("dict[\"taco\"] = %d\n", *(int *)dlib.getFromDict(test, "taco"));
     printf("dict[\"burrito\"] = %d\n", *(int *)dlib.getFromDict(test, "burrito"));
     printf("dict[\"pasta\"] = %d\n", *(int *)dlib.getFromDict(test, "pasta"));
+
+    dlib.removeFromDict(test, "taco");
+    printf("dict[\"burrito\"] = %d\n", *(int *)dlib.getFromDict(test, "burrito"));
+    printf("dict[\"pasta\"] = %d\n", *(int *)dlib.getFromDict(test, "pasta"));
+    if(dlib.getFromDict(test, "taco") == NULL)
+        printf("Success!\n");
+    else
+        printf("Failure!\n");
+    printf("%d\n", test->length);
 
     printf("Freeing dict\n");
     dlib.deleteDict(test);

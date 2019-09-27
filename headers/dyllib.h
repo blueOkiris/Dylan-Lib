@@ -63,6 +63,7 @@ typedef struct DYLAN_LIB {
     dict *(*addToDict) (dict *dct, const char *key, void *value);
     void *(*getFromDict) (dict *dct, const char *key);
     void (*deleteDict) (dict *dct);
+    dict *(*removeFromDict) (dict *dct, const char *key);
 } dylanlib;
 
 extern dylanlib dlib; 

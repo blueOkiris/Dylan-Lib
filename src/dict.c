@@ -45,3 +45,16 @@ void deleteDict(dict *_dict) {
 
     free(_dict);
 }
+
+dict *removeFromDict(dict *_dict, const char *key) {
+    for(int i = 0; i < _dict->length; i++) {
+        if(!strcmp((char *) dlib.accessList(_dict->keys, i), key)) {
+            dlib.removeFromList(_dict->keys, i);
+            dlib.removeFromList(_dict->values, i);
+            _dict->length--;
+            return _dict;
+        }
+    }
+
+    return _dict;
+}
