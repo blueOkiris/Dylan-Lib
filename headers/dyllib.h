@@ -60,7 +60,8 @@ typedef struct DYLAN_LIB {
 
     // Dictionary functions
     dict *(*newDict) (void);
-    dict *(*addToDict) (dict *dct, string *key, void *value);
+    dict *(*addToDict) (dict *dct, const char *key, void *value);
+    void (*deleteDict) (dict *dct);
 } dylanlib;
 
 extern dylanlib dlib; 

@@ -7,6 +7,7 @@
 #include <dyllib.h>
 
 dict *newDict(void);
-dict *addToDict(dict *, string *, void *);
+dict *addToDict(dict *, const char *, void *);
+void deleteDict(dict *);
 
 #endif

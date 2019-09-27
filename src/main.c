@@ -5,13 +5,27 @@
 
 void testLinkedList(void);
 void testString(void);
+void testDictionary(void);
 
 int main(int argc, char** args) {
     //printf("Hello, world!\n");
     testLinkedList();
     testString();
+    testDictionary();
 
     return 0;
+}
+
+void testDictionary(void) {
+    dict *test = dlib.newDict();
+
+    printf("Testing basic add/get:\n");
+    dlib.addToDict(test, "taco", dlib.heapInt(1));
+    dlib.addToDict(test, "burrito", dlib.heapInt(2));
+    dlib.addToDict(test, "pasta", dlib.heapInt(3));
+
+    printf("Freeing dict\n");
+    dlib.deleteDict(test);
 }
 
 void testString(void) {
