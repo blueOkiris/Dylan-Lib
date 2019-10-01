@@ -7,7 +7,10 @@ void testLinkedList(void);
 void testString(void);
 void testDictionary(void);
 void testMiscellaneous(void);
+
+#ifdef DLIBGRAPHICS
 void testGraphics(void);
+#endif
 
 int main(int argc, char** args) {
     //printf("Hello, world!\n");
@@ -15,11 +18,14 @@ int main(int argc, char** args) {
     //testString();
     //testDictionary();
     //testMiscellaneous();
+    #ifdef DLIBGRAPHICS
     testGraphics();
+    #endif
 
     return 0;
 }
 
+#ifdef DLIBGRAPHICS
 // OpenGL on linux
 #ifdef __linux__
     #include <X11/X.h>
@@ -111,6 +117,7 @@ int main(int argc, char** args) {
 #elif __APPLE__
     // Probably not gonna be implemented ever. Don't ever plan on using that stuff.
     // Maybe try to build with X? I think that's something that's doable if I'm not mistaken
+#endif
 #endif
 
 void testMiscellaneous(void) {
