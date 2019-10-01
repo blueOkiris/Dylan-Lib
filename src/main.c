@@ -7,15 +7,21 @@ void testLinkedList(void);
 void testString(void);
 void testDictionary(void);
 void testMiscellaneous(void);
+void testGraphics(void);
 
 int main(int argc, char** args) {
     //printf("Hello, world!\n");
     //testLinkedList();
     //testString();
     //testDictionary();
-    testMiscellaneous();
+    //testMiscellaneous();
+    testGraphics();
 
     return 0;
+}
+
+void testGraphics(void) {
+    
 }
 
 void testMiscellaneous(void) {
