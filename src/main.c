@@ -20,9 +20,98 @@ int main(int argc, char** args) {
     return 0;
 }
 
-void testGraphics(void) {
-    
-}
+// OpenGL on linux
+#ifdef __linux__
+    #include <X11/X.h>
+    #include <X11/Xlib.h>
+    #include <GL/gl.h>
+    #include <GL/glx.h>
+    #include <GL/glu.h>
+
+    Display                 *disp;
+    Window                  root;
+    GLint                   att[] = { GLX_RGBA, GLX_DEPTH_SIZE, 24, GLX_DOUBLEBUFFER, None };
+    XVisualInfo             *vi;
+    Colormap                cmap;
+    XSetWindowAttributes    swa;
+    Window                  win;
+    GLXContext              glc;
+    XWindowAttributes       gwa;
+    XEvent                  xev;
+
+    void drawTestQuad(void) {
+        glClearColor(1.0, 1.0, 1.0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(-1., 1., -1., 1., 1., 20.);
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        gluLookAt(0., 0., 10., 0., 0., 0., 0., 1., 0.);
+
+        glBegin(GL_QUADS);
+            glColor3f(1., 0., 0.); glVertex3f(-.75, -.75, 0.);
+            glColor3f(0., 1., 0.); glVertex3f( .75, -.75, 0.);
+            glColor3f(0., 0., 1.); glVertex3f( .75,  .75, 0.);
+            glColor3f(1., 1., 0.); glVertex3f(-.75,  .75, 0.);
+        glEnd();
+    }
+
+    void testGraphics(void) {
+        disp = XOpenDisplay(NULL);
+
+        if(disp == NULL) {
+            printf("Cannot connect to X Display Server\n");
+            exit(0);
+        }
+
+        root = DefaultRootWindow(disp);
+
+        vi = glXChooseVisual(disp, 0, att);
+
+        if(vi == NULL) {
+            printf("No appropriate visual found\n");
+            exit(0);
+        } else
+            printf("Visual %p selected\n", (void *)vi->visualid);
+
+        cmap = XCreateColormap(disp, root, vi->visual, AllocNone);
+        swa.colormap = cmap;
+        swa.event_mask = ExposureMask | KeyPressMask;
+
+        win = XCreateWindow(disp, root, 0, 0, 600, 600, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
+        XMapWindow(disp, win);
+        XStoreName(disp, win, "Graphics test");
+
+        glc = glXCreateContext(disp, vi, NULL, GL_TRUE);
+        glXMakeCurrent(disp, win, glc);
+
+        glEnable(GL_DEPTH_TEST);
+        while(1) {
+            XNextEvent(disp, &xev);
+
+            if(xev.type == Expose) {
+                XGetWindowAttributes(disp, win, &gwa);
+                glViewport(0, 0, gwa.width, gwa.height);
+                drawTestQuad();
+                glXSwapBuffers(disp, win);
+            } else if(xev.type == KeyPress) {
+                glXMakeCurrent(disp, None, NULL);
+                glXDestroyContext(disp, glc);
+                XDestroyWindow(disp, win);
+                XCloseDisplay(disp);
+                exit(0);
+            }
+        }
+    }
+#elif __WIN32 || __WIN64
+    // Not implemented yet. Sorry windows users :/ When I get a chance I'll add it.
+#elif __APPLE__
+    // Probably not gonna be implemented ever. Don't ever plan on using that stuff.
+    // Maybe try to build with X? I think that's something that's doable if I'm not mistaken
+#endif
 
 void testMiscellaneous(void) {
     // File IO

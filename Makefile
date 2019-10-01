@@ -21,7 +21,7 @@ CFLAGS=    -g -Wall
 
 # Build everything
 test: $(SRC) lib
-	$(CC) $(INC) $(SRC) $(CFLAGS) -o $(OBJNAME) -L. -ldyllib
+	$(CC) $(INC) $(SRC) $(CFLAGS) -o $(OBJNAME) -L. -ldyllib -lX11 -lGL -lGLU
 
 # Compile dyllib source and put obj's in bin folder
 $(LIB_OBJ): $(LIB_SRC) bin
