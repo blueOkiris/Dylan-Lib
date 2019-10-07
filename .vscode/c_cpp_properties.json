@@ -5,7 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/include/"
             ],
-            "defines": [],
+            "defines": [
+                "DLIBGRAPHICS"
+            ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17",
